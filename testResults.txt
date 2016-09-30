@@ -1,0 +1,144 @@
+main.js:396 allAnimals:
+main.js:397 Object {mammals: Array[2], birds: Array[2]}birds: Array[2]0: Parrot(name, birthDate)1: Penguin(name, birthDate)length: 2__proto__: Array[0]mammals: Array[2]0: Lion(name, birthDate)1: Otter(name, birthDate)length: 2__proto__: Array[0]__proto__: Object
+main.js:171
+
+
+
+main.js:172 ---LION TESTING---
+main.js:173 var lionDad = new Lion('Mufasa', '9/29/1900')
+main.js:13 Making new Lion!
+main.js:175 Lion {name: "Mufasa", birthDate: Sat Sep 29 1900 00:00:00 GMT-0400 (EDT)}
+main.js:176 lionDad.name: Mufasa
+main.js:177 lionDad.birthDate: Sat Sep 29 1900 00:00:00 GMT-0400 (EDT)
+main.js:178 lionDad.getName(): Mufasa
+main.js:179 lionDad.getBirthDate(): Sep 29th, 1900
+main.js:180 lionDad.toString():  Mufasa was born Sep 29th, 1900
+main.js:181 lionDad.getAge(): 116
+main.js:182 lionDad.canGiveBirth: true
+main.js:183 lionDad.canLayEggs: false
+main.js:184 var lionCub = lionDad.giveBirth();
+main.js:13 Making new Lion!
+main.js:186 Lion {name: "Mufasa Jr", birthDate: Fri Sep 30 2016 16:17:52 GMT-0400 (EDT)}
+main.js:187 lionCub:  Mufasa Jr was born Sep 30th, 2016
+main.js:188 lionDad.roar('big'): ROOOOAAAAAAARRR!
+main.js:189 lionCub.roar('small'): ROAR!
+main.js:191 lionCub.speak('Polly want a cracker!')
+main.js:194 TypeError: lionCub.speak is not a function(…)
+main.js:197 lionCub.swim(50):
+main.js:200 TypeError: lionCub.swim is not a function(…)
+main.js:203 lionDad.fly('North Pole'):
+main.js:206 TypeError: lionDad.fly is not a function(…)
+main.js:208
+
+
+
+main.js:211 ---PARROT TESTING---
+main.js:212 var parrotMom = new Parrot('Polly', '2/1/2010')
+main.js:15 Making new Parrot!
+main.js:214 Parrot {name: "Polly", birthDate: Mon Feb 01 2010 00:00:00 GMT-0500 (EST)}
+main.js:215 parrotMom.name: Polly
+main.js:216 parrotMom.birthDate: Mon Feb 01 2010 00:00:00 GMT-0500 (EST)
+main.js:217 parrotMom.getName(): Polly
+main.js:218 parrotMom.getBirthDate(): Feb 1st, 2010
+main.js:219 parrotMom.toString():  Polly was born Feb 1st, 2010
+main.js:220 parrotMom.getAge(): 6
+main.js:221 parrotMom.canGiveBirth: false
+main.js:222 parrotMom.canLayEggs: true
+main.js:223 var nest = parrotMom.layEggs();
+main.js:79 Polly has laid 3 eggs!
+3main.js:15 Making new Parrot!
+main.js:225 nest:  Polly II was born Sep 30th, 2016, Polly III was born Sep 30th, 2016, Polly IIII was born Sep 30th, 2016
+main.js:226 [Parrot, Parrot, Parrot]0: Parrot1: Parrot2: Parrotlength: 3__proto__: Array[0]
+main.js:227 var parrotBaby = nest[0]:
+main.js:229 parrotBaby:  Polly II was born Sep 30th, 2016
+main.js:230 Parrot {name: "Polly II", birthDate: Fri Sep 30 2016 16:17:52 GMT-0400 (EDT)}
+main.js:232 parrotBaby.roar('big'):
+main.js:235 TypeError: parrotBaby.roar is not a function(…)
+main.js:238 parrotBaby.roar('small'):
+main.js:241 TypeError: parrotBaby.roar is not a function(…)
+main.js:243 parrotBaby.speak('Polly want a cracker!'):
+main.js:244 Squawk! Polly want a cracker! Squawk!
+main.js:246 parrotBaby.swim(50):
+main.js:249 TypeError: parrotBaby.swim is not a function(…)
+main.js:252 parrotMom.fly('the North Pole'):
+main.js:253 Polly flew to the North Pole!
+main.js:257
+
+
+
+main.js:260 ---OTTER TESTING---
+main.js:261 var otterMom = new Otter('Ollie', '7/1/1975')
+main.js:17 Making new Otter!
+main.js:263 Otter {name: "Ollie", birthDate: Tue Jul 01 1975 00:00:00 GMT-0400 (EDT), speed: 4}
+main.js:264 otterMom.name: Ollie
+main.js:265 otterMom.birthDate: Tue Jul 01 1975 00:00:00 GMT-0400 (EDT)
+main.js:266 otterMom.getName(): Ollie
+main.js:267 otterMom.getBirthDate(): Jul 1st, 1975
+main.js:268 otterMom.toString():  Ollie was born Jul 1st, 1975
+main.js:269 otterMom.getAge(): 41
+main.js:270 otterMom.canGiveBirth: true
+main.js:271 otterMom.canLayEggs: false
+main.js:272 var otterBaby = otterMom.giveBirth();
+main.js:17 Making new Otter!
+main.js:274 otterBaby:  Ollie Jr was born Sep 30th, 2016
+main.js:275 Otter {name: "Ollie Jr", birthDate: Fri Sep 30 2016 16:17:52 GMT-0400 (EDT), speed: 3}
+main.js:277 otterMom.roar('big'):
+main.js:280 TypeError: otterMom.roar is not a function(…)
+main.js:283 otterBaby.roar('small'):
+main.js:286 TypeError: otterBaby.roar is not a function(…)
+main.js:289 otterBaby.speak('Polly want a cracker!')
+main.js:292 TypeError: otterBaby.speak is not a function(…)
+main.js:294 otterMom.swim(50): Ollie swam 200 meters!
+main.js:296 otterMom.fly('North Pole'):
+main.js:299 TypeError: otterMom.fly is not a function(…)
+main.js:301
+
+
+
+main.js:304 ---PENGUIN TESTING---
+main.js:305 var penguinMom = new Penguin('Pepper', '12/10/1989')
+main.js:19 Making new Penguin!
+main.js:307 Penguin {name: "Pepper", birthDate: Sun Dec 10 1989 00:00:00 GMT-0500 (EST), speed: 11}
+main.js:308 penguinMom.name: Pepper
+main.js:309 penguinMom.birthDate: Sun Dec 10 1989 00:00:00 GMT-0500 (EST)
+main.js:310 penguinMom.getName(): Pepper
+main.js:311 penguinMom.getBirthDate(): Dec 10th, 1989
+main.js:312 penguinMom.toString():  Pepper was born Dec 10th, 1989
+main.js:313 penguinMom.getAge(): 27
+main.js:314 penguinMom.canGiveBirth: false
+main.js:315 penguinMom.canLayEggs: true
+main.js:316 var nest = penguinMom.layEggs();
+main.js:79 Pepper has laid 5 eggs!
+5main.js:19 Making new Penguin!
+main.js:318 nest:  Pepper II was born Sep 30th, 2016, Pepper III was born Sep 30th, 2016, Pepper IIII was born Sep 30th, 2016, Pepper IIIII was born Sep 30th, 2016, Pepper IIIIII was born Sep 30th, 2016
+main.js:319 var penguinBaby = nest[0]:
+main.js:321 penguinBaby:  Pepper II was born Sep 30th, 2016
+main.js:322 Penguin {name: "Pepper II", birthDate: Fri Sep 30 2016 16:17:52 GMT-0400 (EDT), speed: 9}
+main.js:324 penguinMom.roar('big'):
+main.js:327 TypeError: penguinMom.roar is not a function(…)
+main.js:330 penguinBaby.roar('small'):
+main.js:333 TypeError: penguinBaby.roar is not a function(…)
+main.js:336 penguinBaby.speak('Polly want a cracker!')
+main.js:339 TypeError: penguinBaby.speak is not a function(…)
+main.js:342 penguinMom.swim(50):
+main.js:343 Pepper swam 550 meters!
+main.js:347 penguinMom.fly('The South Pole'): I can't fly to The South Pole! I can't fly at all!
+main.js:348
+
+
+
+main.js:351 ---TESTING SPECIES-ONLY CONSTRUCTOR---
+main.js:352 var mammal = new Mammal();
+main.js:356 Error: Can only make species directly!(…)
+main.js:358 var bird = new Bird();
+main.js:362 Error: Can only make species directly!(…)
+main.js:364 var animal = new Animal();
+main.js:368 Error: Can only make species directly!(…)
+main.js:370 var lion = new Lion();
+main.js:13 Making new Lion!
+main.js:376 var parrot = new Parrot();
+main.js:15 Making new Parrot!
+main.js:382 var otter = new Otter();
+main.js:17 Making new Otter!
+main.js:388 var penguin = new Penguin();
+main.js:19 Making new Penguin!
