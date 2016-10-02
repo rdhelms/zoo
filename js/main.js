@@ -111,6 +111,7 @@ function defineLion() {
       return "That is not a correct type of roar.";
     }
   };
+  Lion.prototype.imgurl = 'images/lion.jpg';
 }
 defineLion();
 
@@ -128,6 +129,7 @@ function defineOtter() {
     var dist = Math.round(this.speed * time);
     return this.getName() + " swam " + dist + " meters!";
   };
+  Otter.prototype.imgurl = 'images/otter.jpg';
 }
 defineOtter();
 
@@ -146,6 +148,7 @@ function defineParrot() {
   Parrot.prototype.fly = function (destination) {
       return this.getName() + " flew to " + destination + "!";
   };
+  Parrot.prototype.imgurl = 'images/parrot.jpg';
 }
 defineParrot();
 
@@ -166,6 +169,7 @@ function definePenguin() {
     var dist = Math.round(this.speed * time);
     return this.getName() + " swam " + dist + " meters!";
   };
+  Penguin.prototype.imgurl = 'images/penguin.jpg';
 }
 definePenguin();
 
@@ -396,12 +400,199 @@ function runConstructorTests() {
   }
 }
 
-console.log("allAnimals: ");
-console.log(allAnimals);
-runLionTests();
-runParrotTests();
-runOtterTests();
-runPenguinTests();
-runConstructorTests();
+// console.log("allAnimals: ");
+// console.log(allAnimals);
+// runLionTests();
+// runParrotTests();
+// runOtterTests();
+// runPenguinTests();
+// runConstructorTests();
+
+//Define variables
+var allPeople = [];
+var allLions = [];
+var allParrots = [];
+var allOtters = [];
+var allPenguins = [];
+var spawnTime = 5;  //Changed with Parrots
+var maxPeople = 5;  //Changed with Lions
+var personSpeed = 1;  //Changed with Otters
+var timer = spawnTime;
+var totalMoney = 0;
+var ticketPrice = 12; //Changed with Penguins
+var lionCost = 800;
+var parrotCost = 200;
+var otterCost = 300;
+var penguinCost = 400;
+
+
+//Person constructor
+function Person(elem) {
+  this.elem = elem;
+  this.x = 0;
+  this.y = Math.round(Math.random() * 50 + 10);
+  this.speed = Math.random() * personSpeed / 3 + 0.1;
+  this.lionPaid = false;
+  this.parrotPaid = false;
+  this.otterPaid = false;
+  this.penguinPaid = false;
+  this.update = function() {
+    this.x += this.speed;
+    this.elem.css({
+      left: this.x + '%',
+      top: this.y + '%',
+    });
+  };
+}
+
+function addPerson() {
+  if (allPeople.length < maxPeople) {
+    //Create new person's HTML element
+    var $person = $('<div class="person"> <div class="head"> </div> </div>');
+    var r = Math.round(Math.random() * 255);
+    var g = Math.round(Math.random() * 255);
+    var b = Math.round(Math.random() * 255);
+    $person.css({
+      backgroundColor: 'rgb(' + r + ',' + g + ',' + b + ')',
+    });
+    $('.road').append($person);
+    //Create new person
+    var person = new Person($person);
+    allPeople.push(person);
+    console.clear();
+    console.log(allPeople);
+  }
+}
+
+function addLion() {
+  if (totalMoney < lionCost) {
+    console.log("Not enough money!");
+  } else {
+    totalMoney -= lionCost;
+    maxPeople += 2;
+    var newLion = new Lion('Mufasa', new Date());
+    allLions.push(newLion);
+    $lion = $("<img class='lion' src='" + newLion.imgurl + "'>");
+    $('.lionExhibit').append($lion);
+  }
+}
+
+function addParrot() {
+  if (totalMoney < parrotCost) {
+    console.log("Not enough money!");
+  } else {
+    totalMoney -= parrotCost;
+    spawnTime -= 0.5;
+    var newParrot = new Parrot('Polly', new Date());
+    allParrots.push(newParrot);
+    $parrot = $("<img class='parrot' src='" + newParrot.imgurl + "'>");
+    $('.parrotExhibit').append($parrot);
+  }
+}
+
+function addOtter() {
+  if (totalMoney < otterCost) {
+    console.log("Not enough money!");
+  } else {
+    totalMoney -= otterCost;
+    personSpeed += 0.5;
+    var newOtter = new Otter('Ollie', new Date());
+    allOtters.push(newOtter);
+    $otter = $("<img class='otter' src='" + newOtter.imgurl + "'>");
+    $('.otterExhibit').append($otter);
+  }
+}
+
+function addPenguin() {
+  if (totalMoney < penguinCost) {
+    console.log("Not enough money!");
+  } else {
+    totalMoney -= penguinCost;
+    ticketPrice += 5;
+    var newPenguin = new Penguin('Pepper', new Date());
+    allPenguins.push(newPenguin);
+    $penguin = $("<img class='penguin' src='" + newPenguin.imgurl + "'>");
+    $('.penguinExhibit').append($penguin);
+  }
+}
+
+$('.addLion').click(addLion);
+$('.addParrot').click(addParrot);
+$('.addOtter').click(addOtter);
+$('.addPenguin').click(addPenguin);
+
+function playGame() {
+  if (timer > spawnTime) {
+    addPerson();
+    timer = 0;
+  }
+
+  for (person of allPeople) {
+    var index = allPeople.indexOf(person);
+    if (person.x > 100) {
+      person.elem.remove();
+      allPeople.splice(index,1);
+      console.clear();
+      console.log(allPeople);
+    } else if (person.x > 10 && !person.lionPaid) {
+      $money = $("<div class='money'>$</div>");
+      person.elem.append($money);
+      setTimeout(function() {
+        $money.css({
+          transform: 'translate(0, -10px)',
+          opacity: 0,
+        });
+      }, 100);
+      person.lionPaid = true;
+      totalMoney += ticketPrice;
+    } else if (person.x > 35 && !person.parrotPaid) {
+      person.elem.find('.money').remove();
+      $money = $("<div class='money'>$</div>");
+      person.elem.append($money);
+      setTimeout(function() {
+        $money.css({
+          transform: 'translate(0, -10px)',
+          opacity: 0,
+        })
+      }, 100);
+      person.parrotPaid = true;
+      totalMoney += ticketPrice;
+    } else if (person.x > 60 && !person.otterPaid) {
+      person.elem.find('.money').remove();
+      $money = $("<div class='money'>$</div>");
+      person.elem.append($money);
+      setTimeout(function() {
+        $money.css({
+          transform: 'translate(0, -10px)',
+          opacity: 0,
+        })
+      }, 100);
+      person.otterPaid = true;
+      totalMoney += ticketPrice;
+    } else if (person.x > 85 && !person.penguinPaid) {
+      person.elem.find('.money').remove();
+      $money = $("<div class='money'>$</div>");
+      person.elem.append($money);
+      setTimeout(function() {
+        $money.css({
+          transform: 'translate(0, -10px)',
+          opacity: 0,
+        })
+      }, 100);
+      person.penguinPaid = true;
+      totalMoney += ticketPrice;
+    }
+    person.update();
+  }
+
+  $('.gate').html("Ticket Price: $" + ticketPrice +
+                    "<br>Speed Factor: " + personSpeed +
+                    "<br>Max Occupancy: " + maxPeople +
+                    "<br>Spawn rate: " + (spawnTime));
+  $('.totalProfit').text("Total Profit: $" + totalMoney);
+  timer += 0.02;
+}
+
+setInterval(playGame, 20);
 
 });
