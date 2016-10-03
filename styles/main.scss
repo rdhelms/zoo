@@ -11,6 +11,7 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 .animals {
@@ -37,17 +38,42 @@ html, body {
     left: 50%;
     transform: translate(-50%, 0);
   }
+  .animal {
+    height: 25%;
+    width: 30%;
+    border: 2px solid white;
+    transition: all .2s ease;
+    &.boy {
+      border: 2px solid blue;
+    }
+    &.girl {
+      border: 2px solid pink;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+    }
+    .name {
+      display: flex;
+      opacity: 0;
+      justify-content: center;
+      text-align: center;
+      background: white;
+      transition: all .5s ease;
+    }
+  }
 }
 
 .road {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   height: 30%;
   width: 100%;
   background: gray;
   .gate {
-    align-self: flex-end;
+    margin-right: 5%;
     font-size: 3vw;
   }
 }
@@ -90,11 +116,6 @@ html, body {
   font-size: 5vw;
 }
 
-img {
-  height: 25%;
-  border: 2px solid white;
-}
-
 .buttons {
   display: flex;
   justify-content: center;
@@ -107,4 +128,28 @@ button {
   width: 20%;
   margin: 1%;
   font-size: 2vw;
+}
+
+.displayBox {
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 45%;
+  height: 20%;
+  width: 50%;
+  transform: translate(0, -50%);
+  background: white;
+  border: 2px solid black;
+  font-size: 4vw;
+}
+
+.animalOptions {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  bottom: 0;
+  font-size: 3vw;
 }

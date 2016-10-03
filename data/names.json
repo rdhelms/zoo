@@ -1,0 +1,62 @@
+{
+  "names" : {
+    "lionNames" : {
+      "boy" : [
+        "Mufasa",
+        "Scar",
+        "Simba",
+        "Leo"
+      ],
+      "girl" : [
+        "Nala",
+        "Sarabi",
+        "Lioness"
+      ]
+    },
+    "parrotNames" : {
+      "boy" : [
+        "Bob",
+        "Joe",
+        "Sam",
+        "Polly",
+        "Paul"
+      ],
+      "girl" : [
+        "Sally",
+        "Jane",
+        "Emily",
+        "Paulina"
+      ]
+    },
+    "otterNames" : {
+      "boy" : [
+        "Bob",
+        "Joe",
+        "Sam",
+        "Ollie",
+        "Oliver"
+      ],
+      "girl" : [
+        "Sally",
+        "Jane",
+        "Emily",
+        "Olive"
+      ]
+    },
+    "penguinNames" : {
+      "boy" : [
+        "Bob",
+        "Joe",
+        "Sam",
+        "Peter",
+        "Pepper"
+      ],
+      "girl" : [
+        "Sally",
+        "Jane",
+        "Emily",
+        "Empress"
+      ]
+    }
+  }
+}

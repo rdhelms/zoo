@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
 //List of all animals for reference
 var allAnimals = {
   mammals: [Lion, Otter],
@@ -22,6 +21,7 @@ function Animal(name, birthDate) {
   }
   this.name = name;
   this.birthDate = new Date(birthDate);
+  this.gender = Math.random() > 0.5 ? 'M' : 'F';
 }
 function defineAnimal() {
   Animal.prototype = {
@@ -409,6 +409,7 @@ function runConstructorTests() {
 // runConstructorTests();
 
 //Define variables
+var allNames;
 var allPeople = [];
 var allLions = [];
 var allParrots = [];
@@ -418,13 +419,16 @@ var spawnTime = 5;  //Changed with Parrots
 var maxPeople = 5;  //Changed with Lions
 var personSpeed = 1;  //Changed with Otters
 var timer = spawnTime;
-var totalMoney = 0;
+var totalMoney = 10000; //Ensure enough money to init game
 var ticketPrice = 12; //Changed with Penguins
 var lionCost = 800;
 var parrotCost = 200;
 var otterCost = 300;
 var penguinCost = 400;
-
+var maxLions = 9;
+var maxParrots = 9;
+var maxOtters = 9;
+var maxPenguins = 9;
 
 //Person constructor
 function Person(elem) {
@@ -444,7 +448,6 @@ function Person(elem) {
     });
   };
 }
-
 function addPerson() {
   if (allPeople.length < maxPeople) {
     //Create new person's HTML element
@@ -463,56 +466,139 @@ function addPerson() {
     console.log(allPeople);
   }
 }
-
+function addHoverEffect(animal) {
+  animal.hover(
+    function() {
+      $(this).css({
+        zIndex: '2',
+        transform: 'scale(1.5)',
+      });
+      $(this).find('.name').css({
+        opacity: '1'
+      });
+    },
+    function() {
+      $(this).css({
+        zIndex: '0',
+        transform: 'scale(1)',
+      });
+      $(this).find('.name').css({
+        opacity: '0'
+      });
+    }
+  );
+}
+function addClickEffect(animalElem, animalObj) {
+  animalElem.click(function() {
+    $('.animalOptions').html(animalObj.toString());
+  })
+}
 function addLion() {
   if (totalMoney < lionCost) {
     console.log("Not enough money!");
+  } else if (allLions.length >= maxLions) {
+    console.log("Too many lions!");
   } else {
     totalMoney -= lionCost;
     maxPeople += 2;
-    var newLion = new Lion('Mufasa', new Date());
+    var newLion = new Lion("Mufasa", new Date());
     allLions.push(newLion);
-    $lion = $("<img class='lion' src='" + newLion.imgurl + "'>");
+    $lion = $("<div class='animal lion'><img src='" + newLion.imgurl + "'></div>");
+    if (newLion.gender === 'M') {
+      var listOfNames = allNames.names.lionNames.boy;
+      newLion.name = listOfNames[Math.round(Math.random() * (listOfNames.length - 1))];
+      $lion.addClass('boy');
+    } else if (newLion.gender === 'F') {
+      var listOfNames = allNames.names.lionNames.girl;
+      newLion.name = listOfNames[Math.round(Math.random() * (listOfNames.length - 1))];
+      $lion.addClass('girl');
+    }
+    $name = $("<div class='name'>" + newLion.name + "</div>");
+    $lion.append($name);
     $('.lionExhibit').append($lion);
+    addHoverEffect($lion);
+    addClickEffect($lion, newLion);
   }
 }
-
 function addParrot() {
   if (totalMoney < parrotCost) {
     console.log("Not enough money!");
+  } else if (allParrots.length >= maxParrots) {
+    console.log("Too many parrots!");
   } else {
     totalMoney -= parrotCost;
     spawnTime -= 0.5;
     var newParrot = new Parrot('Polly', new Date());
     allParrots.push(newParrot);
-    $parrot = $("<img class='parrot' src='" + newParrot.imgurl + "'>");
+    $parrot = $("<div class='animal parrot'><img src='" + newParrot.imgurl + "'></div>");
+    if (newParrot.gender === 'M') {
+      var listOfNames = allNames.names.parrotNames.boy;
+      newParrot.name = listOfNames[Math.round(Math.random() * (listOfNames.length - 1))];
+      $parrot.addClass('boy');
+    } else if (newParrot.gender === 'F') {
+      var listOfNames = allNames.names.parrotNames.girl;
+      newParrot.name = listOfNames[Math.round(Math.random() * (listOfNames.length - 1))];
+      $parrot.addClass('girl');
+    }
+    $name = $("<div class='name'>" + newParrot.name + "</div>");
+    $parrot.append($name);
     $('.parrotExhibit').append($parrot);
+    addHoverEffect($parrot);
+    addClickEffect($parrot, newParrot);
   }
 }
-
 function addOtter() {
   if (totalMoney < otterCost) {
     console.log("Not enough money!");
+  } else if (allOtters.length >= maxOtters) {
+    console.log("Too many otters!");
   } else {
     totalMoney -= otterCost;
     personSpeed += 0.5;
     var newOtter = new Otter('Ollie', new Date());
     allOtters.push(newOtter);
-    $otter = $("<img class='otter' src='" + newOtter.imgurl + "'>");
+    $otter = $("<div class='animal otter'><img src='" + newOtter.imgurl + "'></div>");
+    if (newOtter.gender === 'M') {
+      var listOfNames = allNames.names.otterNames.boy;
+      newOtter.name = listOfNames[Math.round(Math.random() * (listOfNames.length - 1))];
+      $otter.addClass('boy');
+    } else if (newOtter.gender === 'F') {
+      var listOfNames = allNames.names.otterNames.girl;
+      newOtter.name = listOfNames[Math.round(Math.random() * (listOfNames.length - 1))];
+      $otter.addClass('girl');
+    }
+    $name = $("<div class='name'>" + newOtter.name + "</div>");
+    $otter.append($name);
     $('.otterExhibit').append($otter);
+    addHoverEffect($otter);
+    addClickEffect($otter, newOtter);
   }
 }
-
 function addPenguin() {
   if (totalMoney < penguinCost) {
     console.log("Not enough money!");
+  } else if (allPenguins.length >= maxPenguins) {
+    console.log("Too many penguins!");
   } else {
     totalMoney -= penguinCost;
     ticketPrice += 5;
     var newPenguin = new Penguin('Pepper', new Date());
     allPenguins.push(newPenguin);
-    $penguin = $("<img class='penguin' src='" + newPenguin.imgurl + "'>");
+    $penguin = $("<div class='animal penguin'><img src='" + newPenguin.imgurl + "'></div>");
+    if (newPenguin.gender === 'M') {
+      var listOfNames = allNames.names.penguinNames.boy;
+      newPenguin.name = listOfNames[Math.round(Math.random() * (listOfNames.length - 1))];
+      $penguin.addClass('boy');
+    } else if (newPenguin.gender === 'F') {
+      var listOfNames = allNames.names.penguinNames.girl;
+      newPenguin.name = listOfNames[Math.round(Math.random() * (listOfNames.length - 1))];
+      $penguin.addClass('girl');
+    }
+    $name = $("<div class='name'>" + newPenguin.name + "</div>");
+    $penguin.append($name);
     $('.penguinExhibit').append($penguin);
+    addHoverEffect($penguin);
+    addClickEffect($penguin, newPenguin);
   }
 }
 
@@ -521,6 +607,32 @@ $('.addParrot').click(addParrot);
 $('.addOtter').click(addOtter);
 $('.addPenguin').click(addPenguin);
 
+function initGame() {
+  addLion();
+  addParrot();
+  addOtter();
+  addPenguin();
+  allNames;
+  allPeople = [];
+  allLions = [];
+  allParrots = [];
+  allOtters = [];
+  allPenguins = [];
+  spawnTime = 5;  //Changed with Parrots
+  maxPeople = 5;  //Changed with Lions
+  personSpeed = 1;  //Changed with Otters
+  timer = spawnTime;
+  totalMoney = 0;
+  ticketPrice = 12; //Changed with Penguins
+  lionCost = 800;
+  parrotCost = 200;
+  otterCost = 300;
+  penguinCost = 400;
+  maxLions = 9;
+  maxParrots = 9;
+  maxOtters = 9;
+  maxPenguins = 9;
+}
 function playGame() {
   if (timer > spawnTime) {
     addPerson();
@@ -589,10 +701,26 @@ function playGame() {
                     "<br>Speed Factor: " + personSpeed +
                     "<br>Max Occupancy: " + maxPeople +
                     "<br>Spawn rate: " + (spawnTime));
-  $('.totalProfit').text("Total Profit: $" + totalMoney);
+  $('.totalProfit').text("Total Profit: $" + totalMoney.toLocaleString());
   timer += 0.02;
 }
 
-setInterval(playGame, 20);
+// Get list of names and then start game
+$.ajax({
+  type: 'GET',
+  url: 'data/names.json',
+  headers: 'application/json',
+  success: function (names) {
+    allNames = names;
+  },
+  error: function(err, errorText, error) {
+    console.log(err, errorText, error);
+  },
+  complete: function() {
+    console.log("Import complete!");
+    initGame();
+    setInterval(playGame, 20);
+  }
+});
 
 });
